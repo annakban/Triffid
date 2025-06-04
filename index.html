@@ -2,52 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Triffid Variable Font Tester</title>
+  <title>Triffid Type Tester</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Triffid Variable Font Tester</h1>
-
-  <section class="test-box">
-    <h2>Weight Axis</h2>
-    <div class="sample" contenteditable="true" id="weightSample">Triffid</div>
-    <label for="weightSlider">Weight: <span id="weightValue">400</span></label>
-    <input type="range" id="weightSlider" min="100" max="900" value="400" step="1">
-  </section>
-
-  <section class="test-box">
-    <h2>Carnivore Axis</h2>
-    <div class="sample" contenteditable="true" id="crnvSample">Triffid</div>
-    <label for="crnvSlider">Carnivore: <span id="crnvValue">0</span></label>
-    <input type="range" id="crnvSlider" min="0" max="900" value="0" step="1">
-  </section>
+  <main class="tester">
+    <div class="controls">
+      <label>
+        Size
+        <input type="range" id="sizeSlider" min="16" max="160" value="80" />
+      </label>
+      <label>
+        Weight
+        <input type="range" id="weightSlider" min="100" max="900" value="400" />
+      </label>
+      <label>
+        Carnivore
+        <input type="range" id="crnvSlider" min="0" max="100" value="0" />
+      </label>
+    </div>
+    <div class="sample" contenteditable="true" spellcheck="false">Triffid</div>
+  </main>
 
   <script>
-    // Weight Test
-    const weightSample = document.getElementById('weightSample');
+    const sample = document.querySelector('.sample');
+    const sizeSlider = document.getElementById('sizeSlider');
     const weightSlider = document.getElementById('weightSlider');
-    const weightValue = document.getElementById('weightValue');
-
-    weightSlider.addEventListener('input', () => {
-      const wght = weightSlider.value;
-      weightSample.style.fontVariationSettings = `"wght" ${wght}`;
-      weightValue.textContent = wght;
-    });
-
-    // Carnivore Test
-    const crnvSample = document.getElementById('crnvSample');
     const crnvSlider = document.getElementById('crnvSlider');
-    const crnvValue = document.getElementById('crnvValue');
 
-    crnvSlider.addEventListener('input', () => {
+    function updateStyles() {
+      const size = sizeSlider.value;
+      const weight = weightSlider.value;
       const crnv = crnvSlider.value;
-      crnvSample.style.fontVariationSettings = `"CRNV" ${crnv}`;
-      crnvValue.textContent = crnv;
-    });
+      sample.style.fontSize = `${size}px`;
+      sample.style.fontVariationSettings = `"wght" ${weight}, "CRNV" ${crnv}`;
+    }
 
-    // Initialize
-    weightSample.style.fontVariationSettings = `"wght" ${weightSlider.value}`;
-    crnvSample.style.fontVariationSettings = `"CRNV" ${crnvSlider.value}`;
+    sizeSlider.addEventListener('input', updateStyles);
+    weightSlider.addEventListener('input', updateStyles);
+    crnvSlider.addEventListener('input', updateStyles);
+
+    updateStyles();
   </script>
 </body>
 </html>
