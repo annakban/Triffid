@@ -2,27 +2,79 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Triffid Type Tester</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Triffid Variable Font Tester</title>
+  <style>
+    @font-face {
+      font-family: 'Triffid';
+      src: url('TriffidVF.woff2') format('woff2');
+      font-weight: 100 900;
+    }
+
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Triffid', sans-serif;
+      text-align: center;
+      padding: 2em;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 80px;
+      line-height: 1.1;
+      font-variation-settings: "wght" 400, "CRNV" 0;
+      margin-bottom: 1em;
+      transition: font-variation-settings 0.2s ease;
+    }
+
+    .slider-group {
+      margin: 1.5em auto;
+      max-width: 600px;
+    }
+
+    label {
+      display: block;
+      margin-top: 1em;
+      font-size: 1rem;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: 0.5em;
+    }
+
+    .caption {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+  </style>
 </head>
 <body>
   <h1 contenteditable="true">Triffid</h1>
 
-  <label for="weightSlider">Weight</label>
-  <input type="range" id="weightSlider" min="0" max="100" value="400" step="1">
+  <div class="slider-group">
+    <label for="weightSlider">Weight: <span id="weightValue">400</span></label>
+    <input type="range" id="weightSlider" min="100" max="900" value="400" step="1">
 
-  <label for="crnvSlider">Carnivore</label>
-  <input type="range" id="crnvSlider" min="0" max="100" value="0" step="1">
+    <label for="crnvSlider">Carnivore: <span id="crnvValue">0</span></label>
+    <input type="range" id="crnvSlider" min="0" max="100" value="0" step="1">
+  </div>
+
+  <p class="caption">Edit the word above and move the sliders to test Triffid’s variable axes.</p>
 
   <script>
     const text = document.querySelector('h1');
     const weightSlider = document.getElementById('weightSlider');
     const crnvSlider = document.getElementById('crnvSlider');
+    const weightValue = document.getElementById('weightValue');
+    const crnvValue = document.getElementById('crnvValue');
 
     function updateFontVariation() {
       const wght = weightSlider.value;
       const crnv = crnvSlider.value;
       text.style.fontVariationSettings = `"wght" ${wght}, "CRNV" ${crnv}`;
+      weightValue.textContent = wght;
+      crnvValue.textContent = crnv;
     }
 
     weightSlider.addEventListener('input', updateFontVariation);
