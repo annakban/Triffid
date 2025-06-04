@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'Triffid';
+  src: url('Triffid-VF.woff2') format('woff2');
+}
+
+body {
+  background: black;
+  color: white;
+  font-family: 'Triffid', serif;
+  text-align: center;
+  padding: 2em;
+}
+
+h1 {
+  font-size: 80px;
+  font-variation-settings: "wght" 400, "CRNV" 0;
+  margin-bottom: 1em;
+}
+
+input[type="range"] {
+  width: 60%;
+  margin: 1em 0;
+}
