@@ -1,86 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Triffid Variable Font Tester</title>
-  <style>
-    @font-face {
-      font-family: 'Triffid';
-      src: url('TriffidVF.woff2') format('woff2');
-      font-weight: 100 900;
-    }
-
-    body {
-      background-color: black;
-      color: white;
-      font-family: 'Triffid', sans-serif;
-      text-align: center;
-      padding: 2em;
-      margin: 0;
-    }
-
-    h1 {
-      font-size: 80px;
-      line-height: 1.1;
-      font-variation-settings: "wght" 400, "CRNV" 0;
-      margin-bottom: 1em;
-      transition: font-variation-settings 0.2s ease;
-    }
-
-    .slider-group {
-      margin: 1.5em auto;
-      max-width: 600px;
-    }
-
-    label {
-      display: block;
-      margin-top: 1em;
-      font-size: 1rem;
-    }
-
-    input[type="range"] {
-      width: 100%;
-      margin-top: 0.5em;
-    }
-
-    .caption {
-      font-size: 0.9rem;
-      color: #ccc;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 contenteditable="true">Triffid</h1>
+  <h1>Triffid Variable Font Tester</h1>
 
-  <div class="slider-group">
+  <section class="test-box">
+    <h2>Weight Axis</h2>
+    <div class="sample" contenteditable="true" id="weightSample">Triffid</div>
     <label for="weightSlider">Weight: <span id="weightValue">400</span></label>
     <input type="range" id="weightSlider" min="100" max="900" value="400" step="1">
+  </section>
 
+  <section class="test-box">
+    <h2>Carnivore Axis</h2>
+    <div class="sample" contenteditable="true" id="crnvSample">Triffid</div>
     <label for="crnvSlider">Carnivore: <span id="crnvValue">0</span></label>
-    <input type="range" id="crnvSlider" min="0" max="900" value="0" step="1">
-  </div>
-
-  <p class="caption">Edit the word above and move the sliders to test Triffid’s variable axes.</p>
+    <input type="range" id="crnvSlider" min="0" max="100" value="0" step="1">
+  </section>
 
   <script>
-    const text = document.querySelector('h1');
+    // Weight Test
+    const weightSample = document.getElementById('weightSample');
     const weightSlider = document.getElementById('weightSlider');
-    const crnvSlider = document.getElementById('crnvSlider');
     const weightValue = document.getElementById('weightValue');
+
+    weightSlider.addEventListener('input', () => {
+      const wght = weightSlider.value;
+      weightSample.style.fontVariationSettings = `"wght" ${wght}`;
+      weightValue.textContent = wght;
+    });
+
+    // Carnivore Test
+    const crnvSample = document.getElementById('crnvSample');
+    const crnvSlider = document.getElementById('crnvSlider');
     const crnvValue = document.getElementById('crnvValue');
 
-    function updateFontVariation() {
-      const wght = weightSlider.value;
+    crnvSlider.addEventListener('input', () => {
       const crnv = crnvSlider.value;
-      text.style.fontVariationSettings = `"wght" ${wght}, "CRNV" ${crnv}`;
-      weightValue.textContent = wght;
+      crnvSample.style.fontVariationSettings = `"CRNV" ${crnv}`;
       crnvValue.textContent = crnv;
-    }
+    });
 
-    weightSlider.addEventListener('input', updateFontVariation);
-    crnvSlider.addEventListener('input', updateFontVariation);
-
-    updateFontVariation();
+    // Initialize
+    weightSample.style.fontVariationSettings = `"wght" ${weightSlider.value}`;
+    crnvSample.style.fontVariationSettings = `"CRNV" ${crnvSlider.value}`;
   </script>
 </body>
 </html>
+
