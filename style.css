@@ -2,11 +2,14 @@
   font-family: 'TriffidWeight';
   src: url('TriffidWeightVF.woff2') format('woff2');
   font-weight: 100 900;
+  font-style: normal;
 }
 
 @font-face {
   font-family: 'TriffidCarnivore';
   src: url('TriffidCarnVF.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
