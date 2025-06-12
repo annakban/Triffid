@@ -2,76 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Triffid Variable Font Tester</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Triffid Type Tester</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="tester">
-
-    <!-- Weight Tester -->
-    <section class="test-box">
-      <div class="controls inline-controls">
+    <!-- Weight Axis Tester -->
+    <div class="test-box">
+      <div class="controls">
         <div class="control-group">
-          <label for="weightSlider">Weight</label>
-          <input type="range" id="weightSlider" min="100" max="900" value="400" />
-        </div>
-        <div class="control-group">
-          <label for="weightSize">Size</label>
-          <input type="range" id="weightSize" min="24" max="200" value="80" />
+          <label for="weightRange">Weight</label>
+          <input type="range" id="weightRange" min="100" max="900" value="400" />
         </div>
       </div>
-      <div class="sample" contenteditable="true" id="weightSample">Triffid</div>
-    </section>
+      <div class="sample" id="weightSample" contenteditable>Triffid</div>
+    </div>
 
-    <!-- Carnivore Tester -->
-    <section class="test-box">
-      <div class="controls inline-controls">
+    <!-- Carnivore Axis Tester -->
+    <div class="test-box">
+      <div class="controls">
         <div class="control-group">
-          <label for="crnvSlider">Carnivore</label>
-          <input type="range" id="crnvSlider" min="0" max="100" value="0" />
-        </div>
-        <div class="control-group">
-          <label for="crnvSize">Size</label>
-          <input type="range" id="crnvSize" min="24" max="200" value="80" />
+          <label for="crnvRange">Carnivore</label>
+          <input type="range" id="crnvRange" min="0" max="100" value="0" />
         </div>
       </div>
-      <div class="sample" contenteditable="true" id="crnvSample">Triffid</div>
-    </section>
-
+      <div class="sample" id="crnvSample" contenteditable>Triffid</div>
+    </div>
   </div>
 
   <script>
+    const weightRange = document.getElementById('weightRange');
     const weightSample = document.getElementById('weightSample');
-    const weightSize = document.getElementById('weightSize');
-    const weightSlider = document.getElementById('weightSlider');
+    weightRange.addEventListener('input', () => {
+      weightSample.style.fontVariationSettings = `"wght" ${weightRange.value}, "CRNV" 0`;
+    });
 
+    const crnvRange = document.getElementById('crnvRange');
     const crnvSample = document.getElementById('crnvSample');
-    const crnvSize = document.getElementById('crnvSize');
-    const crnvSlider = document.getElementById('crnvSlider');
-
-    function updateWeightSample() {
-      weightSample.style.fontSize = `${weightSize.value}px`;
-      weightSample.style.fontVariationSettings = `'wght' ${weightSlider.value}`;
-    }
-
-    function updateCrnvSample() {
-      crnvSample.style.fontSize = `${crnvSize.value}px`;
-      crnvSample.style.fontVariationSettings = `'CRNV' ${crnvSlider.value}`;
-    }
-
-    [weightSize, weightSlider].forEach(input => {
-      input.addEventListener('input', updateWeightSample);
+    crnvRange.addEventListener('input', () => {
+      crnvSample.style.fontVariationSettings = `"wght" 400, "CRNV" ${crnvRange.value}`;
     });
-
-    [crnvSize, crnvSlider].forEach(input => {
-      input.addEventListener('input', updateCrnvSample);
-    });
-
-    updateWeightSample();
-    updateCrnvSample();
   </script>
+
 </body>
 </html>
-
 
