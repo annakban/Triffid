@@ -14,6 +14,11 @@
       src: url('TriffidCarnVF.woff2') format('woff2');
     }
 
+    @font-face {
+      font-family: 'TriffidBloomer';
+      src: url('Triffid-BloomerRg.woff2') format('woff2');
+    }
+
     body {
       margin: 0;
       padding: 2em;
@@ -52,20 +57,19 @@
     }
 
     .control-group label {
-      font-size: 0.9rem;
-      color: #333;
+      font-size: 1.2rem;
+      color: #111;
       white-space: nowrap;
+      font-family: 'TriffidBloomer';
     }
 
     .sample {
       height: 300px;
       background: #111;
       color: #F5DFCE;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
       font-size: 80px;
       border-radius: 8px;
@@ -73,11 +77,8 @@
       padding: 0.25em;
       margin-left: auto;
       margin-right: auto;
+      overflow: hidden;
       white-space: normal;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
     }
 
     .sample.weight {
@@ -131,7 +132,7 @@
       <div class="controls">
         <div class="control-group">
           <label for="weightSlider">Weight</label>
-          <input type="range" id="weightSlider" min="0" max="900" value="400">
+          <input type="range" id="weightSlider" min="100" max="1000" value="400">
         </div>
         <div class="control-group">
           <label for="weightSize">Size</label>
@@ -170,6 +171,7 @@
     function updateWeightSample() {
       weightSample.style.fontSize = `${weightSize.value}px`;
       weightSample.style.fontVariationSettings = `'wght' ${weightSlider.value}`;
+      weightSample.style.fontWeight = weightSlider.value; // Important for rendering
     }
 
     function updateCrnvSample() {
