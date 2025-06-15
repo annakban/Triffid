@@ -27,58 +27,65 @@
     }
 
     .test-box {
-      margin-bottom: 60px;
+      margin-bottom: 30px;
     }
 
     .controls {
       display: flex;
       flex-wrap: wrap;
-      gap: 1em;
+      gap: 2em;
       justify-content: center;
       margin-bottom: 1.5em;
     }
 
     .control-group {
+      display: flex;
+      align-items: center;
+      gap: 1em;
       flex: 1;
-      min-width: 140px;
+      min-width: 200px;
     }
 
     .control-group label {
-      display: block;
-      font-size: 0.85rem;
-      margin-bottom: 0.2em;
+      font-size: 0.9rem;
       color: #333;
+      white-space: nowrap;
     }
 
     .sample {
       height: 300px;
       background: #111;
       color: #F5DFCE;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
       text-align: center;
       font-family: 'TriffidVF';
       font-size: 80px;
       font-variation-settings: 'wght' 400, 'CRNV' 0;
-      padding: 1em;
       border-radius: 8px;
       cursor: text;
-      overflow: hidden;
-      max-width: 100ch;
+      padding: 0.25em;
       margin-left: auto;
       margin-right: auto;
+      white-space: normal;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
-    /* Styled sliders */
+    /* Custom slider style similar to typefaces.pizza */
     input[type="range"] {
       -webkit-appearance: none;
       width: 100%;
-      height: 2px;
+      height: 3px;
       background: black;
+      border-radius: 2px;
       outline: none;
-      margin: 0;
-      padding: 0;
+      transition: background 0.3s ease;
     }
 
     input[type="range"]::-webkit-slider-thumb {
@@ -86,23 +93,20 @@
       appearance: none;
       width: 14px;
       height: 14px;
-      background: black;
+      background: #111;
+      border: 2px solid black;
       border-radius: 50%;
       cursor: pointer;
-      margin-top: -6px;
-      position: relative;
-      top: 1px;
+      transition: background 0.3s ease;
     }
 
     input[type="range"]::-moz-range-thumb {
       width: 14px;
       height: 14px;
-      background: black;
-      border: none;
+      background: #111;
+      border: 2px solid black;
       border-radius: 50%;
       cursor: pointer;
-      position: relative;
-      top: 1px;
     }
   </style>
 </head>
@@ -119,10 +123,10 @@
         </div>
         <div class="control-group">
           <label for="weightSize">Size</label>
-          <input type="range" id="weightSize" min="24" max="200" value="80">
+          <input type="range" id="weightSize" min="24" max="168" value="80">
         </div>
       </div>
-      <div class="sample" id="weightSample" contenteditable="true">Triffid</div>
+      <div class="sample" id="weightSample" contenteditable="true">Unearth the Type Mutation</div>
     </section>
 
     <!-- Carnivore Axis -->
@@ -134,10 +138,10 @@
         </div>
         <div class="control-group">
           <label for="crnvSize">Size</label>
-          <input type="range" id="crnvSize" min="24" max="200" value="80">
+          <input type="range" id="crnvSize" min="24" max="168" value="80">
         </div>
       </div>
-      <div class="sample" id="crnvSample" contenteditable="true">Triffid</div>
+      <div class="sample" id="crnvSample" contenteditable="true">Unearth the Type Mutation</div>
     </section>
 
   </div>
@@ -175,4 +179,5 @@
 
 </body>
 </html>
+
 
