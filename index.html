@@ -2,48 +2,175 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Triffid Type Tester</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Triffid Variable Font Tester</title>
+  <style>
+    @font-face {
+      font-family: 'TriffidVF';
+      src: url('TriffidCarnVF.woff2') format('woff2');
+    }
+
+    body {
+      margin: 0;
+      padding: 2em;
+      background: #f5dfcd;
+      font-family: serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    .tester {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .test-box {
+      margin-bottom: 60px;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      justify-content: center;
+      margin-bottom: 1.5em;
+    }
+
+    .control-group {
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .control-group label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.2em;
+      color: #333;
+    }
+
+    .sample {
+      height: 300px;
+      background: #111;
+      color: #F5DFCE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'TriffidVF';
+      font-size: 80px;
+      font-variation-settings: 'wght' 400, 'CRNV' 0;
+      padding: 1em;
+      border-radius: 8px;
+      cursor: text;
+      overflow: hidden;
+      max-width: 100ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Styled sliders */
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 2px;
+      background: black;
+      outline: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      background: black;
+      border-radius: 50%;
+      cursor: pointer;
+      margin-top: -6px;
+      position: relative;
+      top: 1px;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      background: black;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+      top: 1px;
+    }
+  </style>
 </head>
 <body>
 
   <div class="tester">
-    <!-- Weight Axis Tester -->
-    <div class="test-box">
-      <div class="controls">
-        <div class="control-group">
-          <label for="weightRange">Weight</label>
-          <input type="range" id="weightRange" min="100" max="900" value="400" />
-        </div>
-      </div>
-      <div class="sample" id="weightSample" contenteditable>Triffid</div>
-    </div>
 
-    <!-- Carnivore Axis Tester -->
-    <div class="test-box">
+    <!-- Weight Axis -->
+    <section class="test-box">
       <div class="controls">
         <div class="control-group">
-          <label for="crnvRange">Carnivore</label>
-          <input type="range" id="crnvRange" min="0" max="900" value="0" />
+          <label for="weightSlider">Weight</label>
+          <input type="range" id="weightSlider" min="100" max="900" value="400">
+        </div>
+        <div class="control-group">
+          <label for="weightSize">Size</label>
+          <input type="range" id="weightSize" min="24" max="200" value="80">
         </div>
       </div>
-      <div class="sample" id="crnvSample" contenteditable>Triffid</div>
-    </div>
+      <div class="sample" id="weightSample" contenteditable="true">Triffid</div>
+    </section>
+
+    <!-- Carnivore Axis -->
+    <section class="test-box">
+      <div class="controls">
+        <div class="control-group">
+          <label for="crnvSlider">Carnivore</label>
+          <input type="range" id="crnvSlider" min="0" max="900" value="0">
+        </div>
+        <div class="control-group">
+          <label for="crnvSize">Size</label>
+          <input type="range" id="crnvSize" min="24" max="200" value="80">
+        </div>
+      </div>
+      <div class="sample" id="crnvSample" contenteditable="true">Triffid</div>
+    </section>
+
   </div>
 
   <script>
-    const weightRange = document.getElementById('weightRange');
     const weightSample = document.getElementById('weightSample');
-    weightRange.addEventListener('input', () => {
-      weightSample.style.fontVariationSettings = `"wght" ${weightRange.value}, "CRNV" 0`;
+    const weightSize = document.getElementById('weightSize');
+    const weightSlider = document.getElementById('weightSlider');
+
+    const crnvSample = document.getElementById('crnvSample');
+    const crnvSize = document.getElementById('crnvSize');
+    const crnvSlider = document.getElementById('crnvSlider');
+
+    function updateWeightSample() {
+      weightSample.style.fontSize = `${weightSize.value}px`;
+      weightSample.style.fontVariationSettings = `'wght' ${weightSlider.value}`;
+    }
+
+    function updateCrnvSample() {
+      crnvSample.style.fontSize = `${crnvSize.value}px`;
+      crnvSample.style.fontVariationSettings = `'CRNV' ${crnvSlider.value}`;
+    }
+
+    [weightSize, weightSlider].forEach(input => {
+      input.addEventListener('input', updateWeightSample);
     });
 
-    const crnvRange = document.getElementById('crnvRange');
-    const crnvSample = document.getElementById('crnvSample');
-    crnvRange.addEventListener('input', () => {
-      crnvSample.style.fontVariationSettings = `"wght" 400, "CRNV" ${crnvRange.value}`;
+    [crnvSize, crnvSlider].forEach(input => {
+      input.addEventListener('input', updateCrnvSample);
     });
+
+    updateWeightSample();
+    updateCrnvSample();
   </script>
 
 </body>
