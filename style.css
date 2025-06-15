@@ -1,45 +1,44 @@
 @font-face {
-  font-family: 'TriffidWeight';
+  font-family: 'TriffidWeightVF';
   src: url('TriffidWeightVF.woff2') format('woff2');
-  font-weight: 100 900;
 }
 
 @font-face {
-  font-family: 'TriffidCarnivore';
+  font-family: 'TriffidCarnVF';
   src: url('TriffidCarnVF.woff2') format('woff2');
-  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'TriffidBloomer';
+  src: url('Triffid-BloomerRg.woff2') format('woff2');
 }
 
 body {
-  background-color: #F5DFCE;
-  color: black;
-  font-family: serif;
   margin: 0;
   padding: 2em;
-  box-sizing: border-box;
-}
-
-.tester {
-  display: flex;
-  flex-direction: column;
-  gap: 5em;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.test-box {
+  background: #f5dfcd;
+  font-family: serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+.tester {
   width: 100%;
+  max-width: 800px;
+}
+
+.test-box {
+  margin-bottom: 30px;
 }
 
 .controls {
-  width: 100%;
-  max-width: 800px;
   display: flex;
-  flex-direction: column;
-  gap: 1.5em;
+  flex-wrap: wrap;
+  gap: 2em;
+  justify-content: center;
   margin-bottom: 1.5em;
 }
 
@@ -47,43 +46,73 @@ body {
   display: flex;
   align-items: center;
   gap: 1em;
+  flex: 1;
+  min-width: 200px;
 }
 
 .control-group label {
-  font-size: 0.9rem;
-  color: #333;
-  min-width: 80px;
-  flex-shrink: 0;
-}
-
-.control-group input[type="range"] {
-  flex-grow: 1;
-  accent-color: black;
+  font-size: 1.2rem;
+  color: #111;
+  white-space: nowrap;
+  font-family: 'TriffidBloomer';
 }
 
 .sample {
   height: 300px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: black;
-  border-radius: 8px;
-  width: 100%;
-  padding: 0 1em;
-  font-variation-settings: "wght" 400, "CRNV" 0;
-  line-height: 1;
+  background: #111;
   color: #F5DFCE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 80px;
+  border-radius: 8px;
   cursor: text;
-  transition: all 0.2s ease;
-  font-size: clamp(24px, 10vw, 200px);
+  padding: 0.25em;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  white-space: normal;
 }
 
-#weightSample {
-  font-family: 'TriffidWeight', sans-serif;
+.sample.weight {
+  font-family: 'TriffidWeightVF';
+  font-variation-settings: 'wght' 400;
 }
 
-#crnvSample {
-  font-family: 'TriffidCarnivore', sans-serif;
+.sample.carnivore {
+  font-family: 'TriffidCarnVF';
+  font-variation-settings: 'CRNV' 0;
 }
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 3px;
+  background: black;
+  border-radius: 2px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background: #111;
+  border: 2px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: #111;
+  border: 2px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
