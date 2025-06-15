@@ -5,7 +5,12 @@
   <title>Triffid Variable Font Tester</title>
   <style>
     @font-face {
-      font-family: 'TriffidVF';
+      font-family: 'TriffidWeightVF';
+      src: url('TriffidWeightVF.woff2') format('woff2');
+    }
+
+    @font-face {
+      font-family: 'TriffidCarnVF';
       src: url('TriffidCarnVF.woff2') format('woff2');
     }
 
@@ -62,9 +67,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       text-align: center;
-      font-family: 'TriffidVF';
       font-size: 80px;
-      font-variation-settings: 'wght' 400, 'CRNV' 0;
       border-radius: 8px;
       cursor: text;
       padding: 0.25em;
@@ -77,7 +80,16 @@
       text-align: center;
     }
 
-    /* Custom slider style similar to typefaces.pizza */
+    .sample.weight {
+      font-family: 'TriffidWeightVF';
+      font-variation-settings: 'wght' 400;
+    }
+
+    .sample.carnivore {
+      font-family: 'TriffidCarnVF';
+      font-variation-settings: 'CRNV' 0;
+    }
+
     input[type="range"] {
       -webkit-appearance: none;
       width: 100%;
@@ -119,14 +131,14 @@
       <div class="controls">
         <div class="control-group">
           <label for="weightSlider">Weight</label>
-          <input type="range" id="weightSlider" min="100" max="900" value="400">
+          <input type="range" id="weightSlider" min="100" max="1000" value="400">
         </div>
         <div class="control-group">
           <label for="weightSize">Size</label>
           <input type="range" id="weightSize" min="24" max="168" value="80">
         </div>
       </div>
-      <div class="sample" id="weightSample" contenteditable="true">Unearth the Type Mutation</div>
+      <div class="sample weight" id="weightSample" contenteditable="true">Unearth the Type Mutation</div>
     </section>
 
     <!-- Carnivore Axis -->
@@ -141,7 +153,7 @@
           <input type="range" id="crnvSize" min="24" max="168" value="80">
         </div>
       </div>
-      <div class="sample" id="crnvSample" contenteditable="true">Unearth the Type Mutation</div>
+      <div class="sample carnivore" id="crnvSample" contenteditable="true">Unearth the Type Mutation</div>
     </section>
 
   </div>
@@ -179,5 +191,4 @@
 
 </body>
 </html>
-
 
