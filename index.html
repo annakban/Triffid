@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Triffid Variable Font Tester</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -41,6 +41,36 @@
 
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const weightSample = document.getElementById('weightSample');
+    const weightSize = document.getElementById('weightSize');
+    const weightSlider = document.getElementById('weightSlider');
+
+    const crnvSample = document.getElementById('crnvSample');
+    const crnvSize = document.getElementById('crnvSize');
+    const crnvSlider = document.getElementById('crnvSlider');
+
+    function updateWeightSample() {
+      weightSample.style.fontSize = `${weightSize.value}px`;
+      weightSample.style.fontVariationSettings = `'wght' ${weightSlider.value}`;
+    }
+
+    function updateCrnvSample() {
+      crnvSample.style.fontSize = `${crnvSize.value}px`;
+      crnvSample.style.fontVariationSettings = `'CRNV' ${crnvSlider.value}`;
+    }
+
+    [weightSize, weightSlider].forEach(input => {
+      input.addEventListener('input', updateWeightSample);
+    });
+
+    [crnvSize, crnvSlider].forEach(input => {
+      input.addEventListener('input', updateCrnvSample);
+    });
+
+    updateWeightSample();
+    updateCrnvSample();
+  </script>
+
 </body>
 </html>
